@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="openTime"
+            type="com.unicom.waslak_client.model.user.StoresActivityModel.StoresOpeningTime" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/dimen_8dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:shadowRadius="3"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/dimen_12sp"
+                android:shadowColor="@color/black"
+                android:text="@{openTime.dayAsText}"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:shadowRadius="3"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/dimen_12sp"
+                android:shadowColor="@color/black"
+                android:text="@{openTime.openingTime}"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:shadowRadius="3"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/dimen_12sp"
+                android:shadowColor="@color/black"
+                android:text="@{openTime.closingTime}"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.unicom.waslak_client.model.user.ProductsStoreModel.InnerDatum" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+
+        <variable
+            name="priceFormater"
+            type="com.unicom.waslak_client.utils.PriceFormatter" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        app:cardBackgroundColor="#fff"
+        app:cardElevation="@dimen/dimen_4dp"
+        app:strokeColor="#ccc"
+        app:strokeWidth="@dimen/dimen_0.1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/menu_img"
+                android:layout_width="@dimen/dimen_120dp"
+                android:layout_height="0dp"
+                android:background="#eee"
+                android:loadImageProduct="@{product.attachemntsURL == null || product.attachemntsURL.size() == 0 ? `` : product.attachemntsURL.get(0)}"
+                android:src="@drawable/logo_png"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:background="@drawable/discount_bg_ar"
+                android:orientation="horizontal"
+                android:visibility="@{( product.discount == null || product.discount == 0) ? view.GONE : view.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/off"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_12sp" />
+
+
+                <TextView
+                    android:id="@+id/menu_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_3dp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@{String.format(`%d`, product.discount)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_12sp"
+                    tools:text="10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_12sp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/menu_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@{product.name}"
+                android:textColor="#333"
+                android:textSize="@dimen/dimen_12sp"
+                app:layout_constraintStart_toEndOf="@id/menu_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_remove_cart"
+                style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dimen_12dp"
+                android:visibility="visible"
+                app:strokeWidth="0dp"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@color/error"
+                app:layout_constraintBottom_toBottomOf="@id/menu_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/menu_name" />
+
+            <TextView
+                android:id="@+id/menu_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_regular"
+                android:text="@{product.shortDescription}"
+                android:textColor="#333"
+                android:textSize="@dimen/dimen_10sp"
+                app:layout_constraintStart_toStartOf="@id/menu_name"
+                app:layout_constraintTop_toBottomOf="@id/menu_name" />
+
+            <TextView
+                android:id="@+id/menu_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@{product.priceAfterDiscount == null || product.priceAfterDiscount == 0 ? priceFormater.toDecimalString(((double)product.sellingPrice*product.quantityOrder)) : priceFormater.toDecimalString(((double)product.priceAfterDiscount*product.quantityOrder))}"
+                android:textColor="#2adc6a"
+                android:textSize="@dimen/dimen_12sp"
+                app:layout_constraintStart_toStartOf="@id/menu_name"
+                app:layout_constraintTop_toBottomOf="@id/menu_desc" />
+
+            <TextView
+                android:id="@+id/menu_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_3dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/iqd"
+                android:textColor="#2adc6a"
+                android:textSize="@dimen/dimen_12sp"
+                app:layout_constraintStart_toEndOf="@id/menu_price"
+                app:layout_constraintTop_toBottomOf="@id/menu_desc" />
+
+            <TextView
+                android:id="@+id/menu_price_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_12dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@{priceFormater.toDecimalString(((double)product.sellingPrice*product.quantityOrder))}"
+                android:textColor="#999"
+                android:textSize="@dimen/dimen_12sp"
+                android:visibility="@{( product.discount == null || product.discount == 0) ? view.GONE : view.VISIBLE}"
+                app:layout_constraintStart_toEndOf="@id/menu_price_txt"
+                app:layout_constraintTop_toBottomOf="@id/menu_desc" />
+
+            <TextView
+                android:id="@+id/menu_price_txt_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_3dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/iqd"
+                android:textColor="#999"
+                android:textSize="@dimen/dimen_12sp"
+                android:visibility="@{( product.discount == null || product.discount == 0) ? view.GONE : view.VISIBLE}"
+                app:layout_constraintStart_toEndOf="@id/menu_price_before"
+                app:layout_constraintTop_toBottomOf="@id/menu_desc" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="#999"
+                android:visibility="@{( product.discount == null || product.discount == 0) ? view.GONE : view.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/menu_price_before"
+                app:layout_constraintEnd_toEndOf="@id/menu_price_txt_before"
+                app:layout_constraintStart_toStartOf="@id/menu_price_before"
+                app:layout_constraintTop_toTopOf="@id/menu_price_before" />
+
+            <TextView
+                android:id="@+id/qty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/qty"
+                android:textColor="#999"
+                android:textSize="@dimen/dimen_14sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/qty_linear"
+                app:layout_constraintStart_toStartOf="@id/menu_price"
+                app:layout_constraintTop_toTopOf="@id/qty_linear" />
+
+            <LinearLayout
+                android:id="@+id/qty_linear"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_40dp"
+                android:layout_marginStart="@dimen/dimen_12dp"
+                android:layout_marginEnd="@dimen/dimen_12dp"
+                android:layout_marginBottom="@dimen/dimen_3dp"
+                android:background="@drawable/quantity_bg"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/qty_title"
+                app:layout_constraintTop_toBottomOf="@id/menu_price">
+
+                <Button
+                    android:id="@+id/qty_minus"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:icon="@drawable/ic_remove"
+                    app:iconTint="#999"
+                    app:strokeWidth="0dp" />
+
+                <TextView
+                    android:id="@+id/qty_number"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    tools:text="100"
+                    android:text="@{product.quantityOrder == 0 ? String.format(`%d`, 1) :String.format(`%d`, product.quantityOrder)}"
+                    android:textColor="#999"
+                    android:textSize="@dimen/dimen_14sp" />
+
+                <Button
+                    android:id="@+id/qty_plus"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:icon="@drawable/ic_add"
+                    app:iconTint="#999"
+                    app:strokeWidth="0dp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.unicom.waslak_client.model.user.ActivitiesModel.InnerDatum" />
+
+        <variable
+            name="fragmnet"
+            type="com.unicom.waslak_client.ui.user.RequestsFragment" />
+    </data>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_12sp"
+        android:text="@{activity.name}"
+        android:backgroundTint="@color/switch_color_button_change"
+        android:textColor="@color/switch_color_text_change"
+        app:elevation="@dimen/dimen_4dp"
+        android:textAllCaps="false"
+        />
+</layout>

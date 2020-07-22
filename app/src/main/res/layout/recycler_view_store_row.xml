@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="store"
+            type="com.unicom.waslak_client.model.user.StoresActivityModel.InnerDatum" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dimen_4dp"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        app:cardBackgroundColor="#fff"
+        app:strokeColor="#ccc"
+        app:strokeWidth="@dimen/dimen_0.1dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_store"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="@dimen/dimen_50dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:src="@mipmap/ic_launcher_app"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:textSize="@dimen/dimen_12sp"
+                tools:text="dkfghdjk"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:fontFamily="@font/cairo_regular"
+                android:text="@{store.name}"
+                android:textColor="#5dd688"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                app:layout_constraintEnd_toStartOf="@id/order_btn"
+                app:layout_constraintStart_toEndOf="@+id/img_store"
+                app:layout_constraintTop_toTopOf="@id/img_store"/>
+
+            <TextView
+                android:id="@+id/desc_store"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{store.description}"
+                android:textColor="#959595"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/dimen_10sp"
+                android:maxLines="2"
+                android:fontFamily="@font/cairo_regular"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                app:layout_constraintEnd_toStartOf="@id/order_btn"
+                app:layout_constraintStart_toStartOf="@id/name_store"
+                app:layout_constraintTop_toBottomOf="@id/name_store"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/order_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_now"
+                android:textAllCaps="false"
+                android:backgroundTint="#02cff5"
+                android:textSize="@dimen/dimen_10sp"
+                android:textColor="#fff"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                app:layout_constraintTop_toTopOf="@id/img_store"
+                app:layout_constraintBottom_toBottomOf="@id/img_store"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

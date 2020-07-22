@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="slider"
+            type="com.unicom.waslak_client.model.guest.SliderData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+        <ImageView
+            android:id="@+id/img_slider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:loadImageSlider="@{slider.image}"
+            android:scaleType="fitXY"
+            app:layout_constraintHeight_percent="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/title_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/thesansarabic_bold"
+            android:shadowColor="@color/gray"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"
+            android:text="@{slider.title}"
+            android:textColor="#00D472"
+            android:textSize="@dimen/dimen_32sp"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/text_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/thesansarabic_regular"
+            android:paddingStart="70dp"
+            android:paddingEnd="70dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:text="@{slider.text}"
+            android:textAlignment="center"
+            android:textColor="#6E6E6E"
+            android:textSize="@dimen/dimen_18sp"
+            app:layout_constraintTop_toBottomOf="@id/title_slider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

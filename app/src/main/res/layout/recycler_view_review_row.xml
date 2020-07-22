@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="customerRate"
+            type="com.unicom.waslak_client.model.user.RateModel.CustomersRate" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimen_16sp"
+        android:textColor="#2adc6a"
+        android:fontFamily="@font/cairo_bold"
+        android:text="@{customerRate.customerName}"
+        tools:text="Mohammed Abd elmonaim"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"/>
+
+        <RatingBar
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:stepSize="0.5"
+            android:rating="@{(float)customerRate.rate}"
+            android:numStars="5"
+            android:layout_marginTop="@dimen/dimen_4dp"
+          />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_12sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/cairo_regular"
+            tools:text="24-06-2020"
+            android:text="@{customerRate.date}"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:shadowColor="@color/black"
+            android:drawableStart="@drawable/ic_add"
+            android:drawablePadding="@dimen/dimen_8dp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_12sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/cairo_regular"
+            tools:text="Amazing super market"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:text="@{customerRate.note}"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="1"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

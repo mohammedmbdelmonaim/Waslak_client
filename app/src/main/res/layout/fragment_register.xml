@@ -1,0 +1,343 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="registerViewModel"
+            type="com.unicom.waslak_client.viewmodel.guest.RegisterViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.unicom.waslak_client.ui.guest.register.RegisterFragment" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/registerConstraint"
+            android:layout_width="match_parent"
+            android:layout_height='match_parent'
+            android:background="@drawable/gradient_bg">
+
+            <FrameLayout
+                android:id="@+id/progress_bar_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:progressBarStyleHorizontal"
+                    android:theme="@style/ProgressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-6dp"
+                    android:indeterminate="true"
+                    android:visibility="@{registerViewModel.isLoading == null || registerViewModel.isLoading ? fragment.view.VISIBLE : fragment.view.GONE}" />
+            </FrameLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_address_map"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="center"
+                android:padding="@dimen/dimen_5dp"
+                android:text="تحديد العنوان من علي الخريطة"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/dimen_18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/asd"
+                app:strokeColor="@color/white"
+                app:strokeWidth="@dimen/dimen_1dp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register_btn"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60dp"
+                android:layout_margin="@dimen/dimen_24dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/cairo_bold"
+                android:enabled="@{registerViewModel.enableButton}"
+                android:onClick="@{()->registerViewModel.onRegisterClick()}"
+                android:text="@string/register"
+                android:textColor="@color/salGreen"
+                android:textSize="@dimen/dimen_16sp"
+                app:cornerRadius="@dimen/dimen_20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_address_map" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:id="@+id/btn_go_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_24dp"
+                android:fontFamily="@font/cairo_bold"
+                android:layout_marginEnd="@dimen/dimen_24dp"
+                android:gravity="center"
+                android:text="@string/go_signin_txt"
+                android:textAlignment="center"
+                android:onClick="@{()->fragment.onClickLogin()}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16sp"
+                app:strokeColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_btn"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <ImageView
+                android:id="@+id/constraintLayout"
+                android:layout_width="@dimen/dimen_248dp"
+                android:layout_height="@dimen/dimen_132dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_76dp"
+                app:srcCompat="@drawable/ic_wasellak_logo_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:id="@+id/asd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/dimen_24dp"
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingStart="@dimen/dimen_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeColor="#fff"
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:hint="@string/first_name"
+                    android:textColorHint="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeWidth="@dimen/dimen_0.5dp"
+                    app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+                    app:endIconTint="@color/white"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="#fff">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_nat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:maxLength="100"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:singleLine="true"
+                        android:text="@={registerViewModel.firstName}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_lastname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:hint="@string/last_name"
+                    android:textColorHint="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxStrokeColor="#fff"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeWidth="@dimen/dimen_0.5dp"
+                    app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+                    app:endIconTint="@color/white"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="#fff">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_lastnat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cairo_bold"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:maxLength="100"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:singleLine="true"
+                        android:text="@={registerViewModel.lastName}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:hint="@string/user_email_hint"
+                    android:textColorHint="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="@dimen/dimen_0.5dp"
+                    app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+                    app:endIconTint="@color/white"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="#fff">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cairo_bold"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:maxLength="100"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:singleLine="true"
+                        android:text="@={registerViewModel.emailAddress}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:hint="@string/password"
+                    android:textColorHint="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="@dimen/dimen_0.5dp"
+                    app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+                    app:endIconTint="@color/white"
+                    app:endIconMode="password_toggle"
+                    app:hintTextColor="#fff">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cairo_bold"
+                        android:inputType="textPassword"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:maxLength="100"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:singleLine="true"
+                        android:text="@={registerViewModel.password}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_phone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:theme="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_5dp"
+                    android:hint="@string/phone_number"
+                    android:textColorHint="@color/white"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeWidth="@dimen/dimen_0.5dp"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+                    app:endIconTint="@color/white"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="#fff">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cairo_bold"
+                        android:inputType="phone"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:maxLength="100"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:singleLine="true"
+                        android:text="@={registerViewModel.mobile}"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:gravity="center"
+                    android:onClick="openLoginActivity"
+                    android:text="@string/login"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_13sp"
+                    android:textStyle="normal"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

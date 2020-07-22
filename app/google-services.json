@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "333697760173",
+    "firebase_url": "https://iem-system-60e0f.firebaseio.com",
+    "project_id": "iem-system-60e0f",
+    "storage_bucket": "iem-system-60e0f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333697760173:android:d0443f309ffdec6805ff24",
+        "android_client_info": {
+          "package_name": "com.unicomg.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333697760173-4aac606bhn0f03m8r9g0biok1qgi2ed5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2ZF79uW3yuTwVcuP-26X1zxBLgJ8bK9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333697760173-4aac606bhn0f03m8r9g0biok1qgi2ed5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "333697760173-dfo8mvnqo7hamkit4rc6a7828gmngok7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.unicomg.wasellak",
+                "app_store_id": "1508156788"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333697760173:android:5bda8a1892012bb305ff24",
+        "android_client_info": {
+          "package_name": "com.unicomg.iraqemergencymanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333697760173-pd4p5seogi76li470403c04a51f9eo32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unicomg.iraqemergencymanagement",
+            "certificate_hash": "661b19f8a09e07449fcd395745e1982ba0e49093"
+          }
+        },
+        {
+          "client_id": "333697760173-4aac606bhn0f03m8r9g0biok1qgi2ed5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2ZF79uW3yuTwVcuP-26X1zxBLgJ8bK9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333697760173-4aac606bhn0f03m8r9g0biok1qgi2ed5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "333697760173-dfo8mvnqo7hamkit4rc6a7828gmngok7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.unicomg.wasellak",
+                "app_store_id": "1508156788"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="loginViewModel"
+            type="com.unicom.waslak_client.viewmodel.guest.LoginViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.unicom.waslak_client.ui.guest.login.LoginFragment" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginConstraint"
+        android:layout_width="match_parent"
+        android:layout_height='match_parent'
+        android:background="@drawable/gradient_bg">
+
+        <FrameLayout
+            android:id="@+id/progress_bar_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:progressBarStyleHorizontal"
+                android:theme="@style/ProgressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-6dp"
+                android:indeterminate="true"
+                android:visibility="@{loginViewModel.isLoading == null || loginViewModel.isLoading ? fragment.view.VISIBLE : fragment.view.GONE}" />
+        </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            app:strokeColor="@color/white"
+            android:id="@+id/btn_forget_password"
+            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/forget_password"
+            android:onClick="@{()->fragment.onClickForget()}"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register_btn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:fontFamily="@font/cairo_bold"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/ne_account"
+            android:onClick="@{()->fragment.onClickRegister()}"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16sp"
+            app:cornerRadius="@dimen/dimen_22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_forget_password"
+            app:layout_constraintVertical_bias="0.2"
+            app:strokeColor="@color/white" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginVertical="@dimen/dimen_20dp"
+            android:layout_marginStart="@dimen/dimen_24dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@color/ramady"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginVertical="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:background="@color/ramady"
+
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.914"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60dp"
+            android:layout_margin="@dimen/dimen_24dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/cairo_bold"
+            android:onClick="@{()->loginViewModel.onLoginClick()}"
+            android:enabled="@{loginViewModel.enableButton}"
+            android:text="@string/login"
+            android:textColor="@color/salGreen"
+            android:textSize="@dimen/dimen_16sp"
+            app:cornerRadius="@dimen/dimen_20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_layout_password" />
+
+
+        <ImageView
+            android:id="@+id/constraintLayout"
+            android:layout_width="@dimen/dimen_248dp"
+            android:layout_height="@dimen/dimen_132dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_76dp"
+            app:srcCompat="@drawable/ic_wasellak_logo_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_layout_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:hint="@string/user_email_hint"
+            android:textColorHint="@color/white"
+            app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+            app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+            app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+            app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+            app:boxStrokeColor="#fff"
+            app:boxStrokeWidth="@dimen/dimen_0.5dp"
+            app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+            app:endIconTint="@color/white"
+            app:endIconMode="clear_text"
+            app:hintTextColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/cairo_bold"
+                android:inputType="textEmailAddress"
+                android:paddingStart="@dimen/dimen_16dp"
+                android:paddingTop="@dimen/dimen_8dp"
+                android:paddingEnd="@dimen/dimen_16dp"
+                android:paddingBottom="@dimen/dimen_8dp"
+                android:singleLine="true"
+                android:text="@={loginViewModel.emailAddress}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_layout_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/TextLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            android:hint="@string/password_hint"
+            android:textColorHint="@color/white"
+            app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+            app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+            app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+            app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+            app:boxStrokeColor="#fff"
+            app:boxStrokeWidth="@dimen/dimen_0.5dp"
+            app:boxStrokeWidthFocused="@dimen/dimen_1dp"
+            app:endIconTint="@color/white"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_layout_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:inputType="textPassword"
+                android:paddingStart="@dimen/dimen_16dp"
+                android:paddingTop="@dimen/dimen_8dp"
+                android:paddingEnd="@dimen/dimen_16dp"
+                android:paddingBottom="@dimen/dimen_8dp"
+                android:singleLine="true"
+                android:text="@={loginViewModel.password}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16sp" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <!--    </ScrollView>-->
+</layout>

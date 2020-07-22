@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="store"
+            type="com.unicom.waslak_client.model.user.StoresActivityModel.InnerDatum" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/dimen_4dp"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        app:cardBackgroundColor="#fff"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:background="@drawable/store_detail_bg"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_store"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="@dimen/dimen_50dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:src="@mipmap/ic_launcher_app"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:textSize="@dimen/dimen_14sp"
+                android:maxLines="1"
+                android:fontFamily="@font/cairo_regular"
+                android:text="@{store.name}"
+                android:textColor="#5dd688"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                app:layout_constraintStart_toEndOf="@+id/img_store"
+                app:layout_constraintTop_toTopOf="@id/img_store"/>
+
+            <TextView
+                android:id="@+id/desc_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{store.description}"
+                android:textColor="#959595"
+                android:textSize="@dimen/dimen_11sp"
+                android:maxLines="2"
+                android:fontFamily="@font/cairo_regular"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintStart_toStartOf="@id/name_store"
+                app:layout_constraintBottom_toBottomOf="@id/img_store"
+                app:layout_constraintTop_toBottomOf="@id/name_store"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="notification"
+            type="com.unicom.waslak_client.model.user.NotificationHistoryModel.InnerDatum" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        app:cardBackgroundColor="#fff"
+        app:cardElevation="@dimen/dimen_4dp"
+        app:strokeColor="#ccc"
+        app:strokeWidth="@dimen/dimen_0.1dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_16dp">
+            <ImageView
+                android:id="@+id/notifi_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_notifications"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/notifi_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text = "Order Update"
+                android:text="@{notification.title}"
+                android:textColor="@color/black"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowColor="@color/gray"
+                android:shadowRadius="1"
+                android:fontFamily="@font/cairo_bold"
+                android:textSize="@dimen/dimen_14sp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                app:layout_constraintStart_toEndOf="@+id/notifi_icon"/>
+
+            <TextView
+                android:id="@+id/notifi_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text = "Order Update"
+                android:text="@{notification.body}"
+                android:textColor="@color/gray"
+                android:layout_marginTop="@dimen/dimen_3dp"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowColor="@color/black"
+                android:shadowRadius="1"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/dimen_12sp"
+                app:layout_constraintTop_toBottomOf="@+id/notifi_status"
+                app:layout_constraintStart_toStartOf="@+id/notifi_status"/>
+
+            <TextView
+                android:id="@+id/notifi_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text = "Order Update"
+                android:text="@{notification.creationDateAsText}"
+                android:textColor="@color/gray"
+                android:shadowDy="2"
+                android:layout_marginTop="@dimen/dimen_3dp"
+                android:shadowDx="2"
+                android:shadowColor="@color/black"
+                android:shadowRadius="1"
+                android:fontFamily="@font/cairo_regular"
+                android:textSize="@dimen/dimen_12sp"
+                app:layout_constraintTop_toBottomOf="@+id/notifi_body"
+                app:layout_constraintStart_toStartOf="@+id/notifi_status"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_arrow_forward"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

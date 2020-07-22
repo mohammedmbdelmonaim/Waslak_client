@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.unicom.waslak_client.ui.user.NewOrderFragment" />
+
+        <variable
+            name="store"
+            type="com.unicom.waslak_client.viewmodel.user.NewOrderViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.user.RequestsFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/new_order_toolbar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f8f8f8"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:title="@string/add_new_order"
+                app:titleTextColor="@color/black" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <FrameLayout
+                    android:id="@+id/progress_bar_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        style="?android:progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-6dp"
+                        android:indeterminate="true"
+                        android:visibility="@{store.isLoading == null || store.isLoading ? fragment.view.VISIBLE : fragment.view.GONE}" />
+
+                </FrameLayout>
+                <ImageView
+                    android:id="@+id/store_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:srcCompat="@drawable/ic_requests" />
+
+                <TextView
+                    android:id="@+id/store_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="@string/store"
+                    android:textSize="@dimen/dimen_16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/store_img"
+                    app:layout_constraintStart_toEndOf="@id/store_img"
+                    app:layout_constraintTop_toTopOf="@id/store_img" />
+
+                <TextView
+                    android:id="@+id/store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_3dp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@{store.storeLiveData.name}"
+                    android:textColor="#2adc6a"
+                    android:textSize="@dimen/dimen_16sp"
+                    app:layout_constraintStart_toStartOf="@id/store_title"
+                    app:layout_constraintTop_toBottomOf="@id/store_title" />
+
+                <View
+                    android:id="@+id/store_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0.1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="#ccc"
+                    app:layout_constraintTop_toBottomOf="@id/store_name" />
+
+                <ImageView
+                    android:id="@+id/rate_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/store_line"
+                    app:srcCompat="@drawable/ic_outline_star_half" />
+
+                <TextView
+                    android:id="@+id/rate_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/gray"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="1"
+                    android:text="@string/reviews"
+                    android:textSize="@dimen/dimen_16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/rate_img"
+                    app:layout_constraintStart_toEndOf="@id/rate_img"
+                    app:layout_constraintTop_toTopOf="@id/rate_img" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_3dp"
+                    android:layout_marginBottom="@dimen/dimen_4dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="@{store.storeLiveData.rate}"
+                    app:layout_constraintStart_toStartOf="@id/rate_title"
+                    app:layout_constraintTop_toBottomOf="@id/rate_title" />
+
+                <LinearLayout
+                    android:id="@+id/reviews_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_15dp"
+                    android:visibility="@{store.storeLiveData.numberOfReviews == 0 ?  fragment.view.VISIBLE : fragment.view.VISIBLE}"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@id/rating"
+                    app:layout_constraintStart_toEndOf="@id/rating"
+                    app:layout_constraintTop_toTopOf="@id/rating">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_3dp"
+                        android:visibility="visible"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text="("
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_10sp" />
+
+                    <TextView
+                        android:id="@+id/review_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_3dp"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text="@{String.format(`%d`, store.storeLiveData.numberOfReviews)}"
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_10sp"
+                        tools:text="12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_3dp"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text="@{(store.storeLiveData.numberOfReviews == 1 || store.storeLiveData.numberOfReviews == 0 ) ? @string/review : @string/reviews}"
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text=")"
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_10sp" />
+
+                    <Button
+                        android:id="@+id/reviews_show"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_15dp"
+                        android:fontFamily="@font/cairo_bold"
+                        android:onClick="@{()->fragment.clickReviews(store.storeLiveData.numberOfReviews)}"
+                        android:text="@{store.storeLiveData.numberOfReviews == 0 ? @string/add_first_review : @string/show_all}"
+                        android:textAllCaps="false"
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_14sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/rate_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0.1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="#ccc"
+                    app:layout_constraintTop_toBottomOf="@id/reviews_linear" />
+
+
+                <ImageView
+                    android:id="@+id/times_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rate_line"
+                    app:srcCompat="@drawable/ic_history" />
+
+                <TextView
+                    android:id="@+id/times_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="@string/open_times"
+                    android:textSize="@dimen/dimen_16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/times_img"
+                    app:layout_constraintStart_toEndOf="@id/times_img"
+                    app:layout_constraintTop_toTopOf="@id/times_img" />
+
+                <LinearLayout
+                    android:id="@+id/times_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_3dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="@id/times_title"
+                    app:layout_constraintTop_toBottomOf="@id/times_title">
+
+                    <TextView
+                        android:id="@+id/time_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:text="@{store.storeLiveData.isOpen ? @string/open_now : @string/closed_now}"
+                        android:textColor="#bbb"
+                        android:textSize="@dimen/dimen_14sp" />
+
+                    <Button
+                        android:id="@+id/time_show"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_15dp"
+                        android:fontFamily="@font/cairo_bold"
+                        android:onClick="@{()->fragment.clickTimes()}"
+                        android:text="@{store.storeLiveData.storesOpeningTimes.size() != 0 ?  @string/show_all : ``}"
+                        android:textAllCaps="false"
+                        android:textColor="#02cff5"
+                        android:textSize="@dimen/dimen_14sp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/times_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0.1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="#ccc"
+                    app:layout_constraintTop_toBottomOf="@id/times_linear" />
+
+
+                <ImageView
+                    android:id="@+id/menu_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/times_line"
+                    app:srcCompat="@drawable/ic_menu" />
+
+                <TextView
+                    android:id="@+id/menu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/gray"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="1"
+                    android:text="@string/menu"
+                    android:textSize="@dimen/dimen_16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/menu_img"
+                    app:layout_constraintStart_toEndOf="@id/menu_img"
+                    app:layout_constraintTop_toTopOf="@id/menu_img" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/products_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_3dp"
+                    android:layout_marginBottom="@dimen/dimen_8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/menu_img" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_layout_add_products"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_200dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginBottom="@dimen/dimen_16dp"
+                    android:hint="@string/add_products"
+                    android:textColorHint="@color/gray"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusBottomStart="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopEnd="@dimen/dimen_6dp"
+                    app:boxCornerRadiusTopStart="@dimen/dimen_6dp"
+                    app:boxStrokeColor="@color/gray"
+                    app:boxStrokeWidth="@dimen/dimen_1dp"
+                    app:boxStrokeWidthFocused="@dimen/dimen_2dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/gray"
+                    app:hintTextColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/menu_img">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_add_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/cairo_bold"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:letterSpacing="0.1"
+                        android:paddingStart="@dimen/dimen_16dp"
+                        android:paddingTop="@dimen/dimen_8dp"
+                        android:paddingEnd="@dimen/dimen_16dp"
+                        android:paddingBottom="@dimen/dimen_8dp"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/dimen_16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/order_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginBottom="@dimen/dimen_16dp"
+                    android:backgroundTint="#2adc6a"
+                    android:fontFamily="@font/cairo_bold"
+                    android:paddingTop="@dimen/dimen_6dp"
+                    android:paddingBottom="@dimen/dimen_6dp"
+                    android:text="@string/order_now"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/dimen_16sp"
+                    android:onClick="@{()->fragment.orderBtn()}"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_layout_add_products"
+                    app:layout_constraintVertical_bias="1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/basket_constraint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end">
+
+            <FrameLayout
+                android:id="@+id/frame_basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floating_action_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:onClick="@{()->fragment.orderNow()}"
+                    android:tint="@color/white"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/ic_outline_shopping_cart" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/basket_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:background="@drawable/basket_count_bg"
+                android:fontFamily="@font/cairo_bold"
+                android:text="0"
+                android:textColor="#fff"
+                android:textSize="@dimen/dimen_10sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/frame_basket" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
